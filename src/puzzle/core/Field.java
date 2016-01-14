@@ -1,13 +1,12 @@
 package puzzle.core;
 
-
 public class Field {
 
 	private final int rowCount;
 	private final int columnCount;
 	private static final int GAP = 0;
-	
-	private int[][] tiles;
+
+	public int[][] tiles;
 	private int actulaColumn;
 	private int actualRow;
 
@@ -24,7 +23,7 @@ public class Field {
 		generateField();
 	}
 
-	private void generateField() {
+	public void generateField() {
 		for (int row = 0; row < rowCount; row++) {
 			for (int column = 0; column < columnCount; column++) {
 				System.out.print(tiles[row][column] + "\t");
@@ -33,7 +32,7 @@ public class Field {
 		}
 	}
 
-	private void generateNumbers() {
+	public void generateNumbers() {
 		int number = 1;
 		for (int row = 0; row < rowCount; row++) {
 			for (int column = 0; column < columnCount; column++) {
@@ -63,7 +62,7 @@ public class Field {
 			tiles[actualRow][actulaColumn] = tiles[actualRow + 1][actulaColumn];
 			tiles[actualRow + 1][actulaColumn] = GAP;
 		}
-		
+
 	}
 
 	public void moveUp() {
@@ -72,7 +71,7 @@ public class Field {
 			tiles[actualRow][actulaColumn] = tiles[actualRow - 1][actulaColumn];
 			tiles[actualRow - 1][actulaColumn] = GAP;
 		}
-		
+
 	}
 
 	public void moveRight() {
@@ -81,7 +80,7 @@ public class Field {
 			tiles[actualRow][actulaColumn] = tiles[actualRow][actulaColumn + 1];
 			tiles[actualRow][actulaColumn + 1] = GAP;
 		}
-		
+
 	}
 
 	public void moveLeft() {
@@ -90,6 +89,20 @@ public class Field {
 			tiles[actualRow][actulaColumn] = tiles[actualRow][actulaColumn - 1];
 			tiles[actualRow][actulaColumn - 1] = GAP;
 		}
-		
+
 	}
+
+	public int getRowCount() {
+		return rowCount;
+	}
+
+	public int getColumnCount() {
+		return columnCount;
+	}
+
+	public boolean isFinished() {
+		
+		return true;
+	}
+
 }

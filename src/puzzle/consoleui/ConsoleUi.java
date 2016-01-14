@@ -7,6 +7,7 @@ import puzzle.core.Field;
 
 public class ConsoleUi {
 	private Field field;
+	
 	private boolean game = true;
 
 	public ConsoleUi(Field field) {
@@ -14,14 +15,17 @@ public class ConsoleUi {
 	}
 
 	public void play() throws IOException {
-		Scanner csaner = new Scanner(System.in);
+		Scanner scener = new Scanner(System.in);
 		System.out.print("Stlac smer: ");
-		String move = csaner.next();
-		while (game) {
-			switch (move) {
+		String option = "";
+		
+		while (!option.equals("x")) {
+			option = scener.next();
+			switch (option) {
 			case "w":
 				field.moveUp();
 				//field.generateField();
+				
 				break;
 			case "s":
 				field.moveDown();
@@ -37,12 +41,42 @@ public class ConsoleUi {
 				break;
 			default:
 				System.out.println("zly vstup skus A/S/D/W");
-				break;
+				continue;
 			}
+			//field.generateField();
+			//field.generateNumbers();
+			show();
+			if(isEnd())
+				return;
 		}
+		scener.close();
 	}
-
-	public void show() {
+	
+	private void show(){
+		for (int row = 0; row < field.getRowCount(); row++) {
+			for (int column = 0; column < field.getColumnCount(); column++) {
+				System.out.print(field.tiles[row][column] + "\t");
+			}
+			System.out.println();
+		}
 		
 	}
+	
+	
+
+	private boolean isEnd() {
+		/*if(field.isFinished()){
+			try{
+				hallOfFame.addScore(name, field.getPlayingSeconds(), 2);
+			}catch (Exception e){
+				System.err.println("Nepodarilo sa ulozit score");
+				e.printStackTrace();
+			}*/
+			//System.out.println("Vyhral si!");
+			//System.out.println(hallOfFame);
+		//	return true;
+		//}
+		return false;
+	}
+
 }
